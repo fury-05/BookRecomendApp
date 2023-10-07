@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Recommendation</title>
+</head>
+<body>
+    <h1>Book Recommendation App</h1>
+    <form method="POST">
+        <label for="category">Category:</label>
+        <select name="category" id="category" required>
+            {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="genre">Genre:</label>
+        <select name="genre" id="genre" required>
+            {% for genre in genres %}
+                <option value="{{ genre }}">{{ genre }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="mood">Mood:</label>
+        <select name="mood" id="mood" required>
+            {% for mood in moods %}
+                <option value="{{ mood }}">{{ mood }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <input type="submit" value="Get Recommendations">
+    </form>
+</body>
+</html>
