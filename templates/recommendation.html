@@ -18,7 +18,7 @@
 <body>
     <h1>Recommended Books</h1>
     <div>
-        {% for book in recommendations %}
+        {% for book in enhanced_recommendations %}
             <div class="book-card">
                 <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
                 <h3>{{ book.title }}</h3>
@@ -27,5 +27,12 @@
             </div>
         {% endfor %}
     </div>
+
+    <!-- Add a horizontal line to separate the sections -->
+    <hr>
+
+    <!-- Section for displaying raw API response -->
+    <h1>Raw API Response</h1>
+    <pre>{{ raw_response | tojson(indent=2) }}</pre>
 </body>
 </html>

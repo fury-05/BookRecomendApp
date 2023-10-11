@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template
 import requests
 import os
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 app = Flask(__name__)
 
@@ -15,6 +17,44 @@ categories = ["Fiction", "Nonfiction", "Science Fiction", "Mystery", "Fantasy"]
 genres = ["Adventure", "Romance", "Thriller", "Science", "History"]
 moods = ["Happy", "Sad", "Exciting", "Mysterious", "Inspiring"]
 
+# Function to process book data and generate recommendations
+def process_books(data, category, genre, mood):
+    recommendations = []
+    book_descriptions = []
+
+    for item in data.get("items", []):
+        volume_info = item.get("volumeInfo")
+        title = volume_info.get("title", "Unknown Title")
+        authors = ", ".join(volume_info.get("authors", ["Unknown Author"]))
+        release_date = volume_info.get("publishedDate", "Unknown Date")
+        book_cover = volume_info.get("imageLinks", {}).get("thumbnail", "No Cover")
+        description = volume_info.get("description", "")
+
+        book_info = f"{title} {authors} {release_date} {description}"
+        book_descriptions.append(book_info)
+
+        recommendations.append({
+            "title": title,
+            "authors": authors,
+            "release_date": release_date,
+            "book_cover": book_cover,
+        })
+
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(book_descriptions)
+
+    user_preference = f"{category} {genre} {mood}"
+    user_vector = vectorizer.transform([user_preference])
+
+    cosine_similarities = cosine_similarity(user_vector, tfidf_matrix)
+
+    similar_books_indices = cosine_similarities.argsort()[0][::-1]
+    top_similar_indices = similar_books_indices[:10]
+
+    final_recommendations = [recommendations[i] for i in top_similar_indices]
+
+    return final_recommendations
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -22,34 +62,16 @@ def index():
         genre = request.form.get("genre")
         mood = request.form.get("mood")
 
-        # Construct the query for the Google Books API
         query = f"{category}+{genre}+{mood}"
 
-        # Make a request to the API with your API key
         params = {"q": query, "key": API_KEY}
         response = requests.get(API_URL, params=params)
 
-        # Parse the response as JSON
         data = response.json()
 
-        # Extract book recommendations with additional details
-        recommendations = []
+        enhanced_recommendations = process_books(data, category, genre, mood)
 
-        for item in data.get("items", []):
-            volume_info = item.get("volumeInfo")
-            title = volume_info.get("title", "Unknown Title")
-            authors = ", ".join(volume_info.get("authors", ["Unknown Author"]))
-            release_date = volume_info.get("publishedDate", "Unknown Date")
-            book_cover = volume_info.get("imageLinks", {}).get("thumbnail", "No Cover")
-            
-            recommendations.append({
-                "title": title,
-                "authors": authors,
-                "release_date": release_date,
-                "book_cover": book_cover
-            })
-
-        return render_template("recommendation.html", recommendations=recommendations)
+        return render_template("recommendation.html", enhanced_recommendations=enhanced_recommendations, raw_response=data)
 
     return render_template("index.html", categories=categories, genres=genres, moods=moods)
 
