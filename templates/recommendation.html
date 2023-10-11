@@ -16,11 +16,25 @@
     </style>
 </head>
 <body>
+    <h1>Current Trending Books</h1>
+    <div>
+        {% for book in trending_books %}
+            <div class="book-card">
+                <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
+                <h3>{{ book.title }}</h3>
+                <p>Author: {{ book.authors }}</p>
+                <p>Release Date: {{ book.release_date }}</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <hr>
+
     <h1>Recommended Books</h1>
     <div>
         {% for book in enhanced_recommendations %}
             <div class="book-card">
-                <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
+                <img src="{{ book.book_cover }}" alt "{{ book.title }} Cover" class="book-cover">
                 <h3>{{ book.title }}</h3>
                 <p>Author: {{ book.authors }}</p>
                 <p>Release Date: {{ book.release_date }}</p>
