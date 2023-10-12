@@ -1,6 +1,6 @@
 # Book Recommendation App
 
-Languages and Farmeworks Used
+# Languages and Farmeworks Used
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
@@ -12,7 +12,7 @@ Languages and Farmeworks Used
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-GitHub Stats
+# GitHub Stats
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/fury-05/BookRecomendApp?style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/fury-05/BookRecomendApp?style=for-the-badge)
@@ -42,7 +42,7 @@ To run this project locally, follow these instructions:
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/YourUsername/Book-Recommendation-App.git
+git clone https://github.com/fury-05/Book-Recommendation-App.git
 ```
 
 2. Change to the project directory:
@@ -58,15 +58,20 @@ pip install -r requirements.txt
 ```
 
 4. Set up the Google Books API key:
-   - Obtain a Google Books API key and add it to your environment or create a Replit Secrets variable named "google_api_key."
+   - Obtain a Google Books API key and add it to your environment or create a Replit Secrets variable named "google_api_key".
 
-5. Run the application:
+5. Set up the New York Times API key:
+   - Obtain a New York Times API key and add it to your environment or create a Replit Secrets variable named "nyt_api_key".
+
+## Usage
+
+6. Run the application:
 
 ```bash
 python main.py
 ```
 
-6. Access the app in your web browser at `http://localhost:5000`.
+7. Access the app in your web browser at `http://localhost:5000`.
 
 ## Contributing
 
@@ -108,7 +113,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Version
 
-Version 1.0
+Version 1.1.0
 
 ## Acknowledgments
 
