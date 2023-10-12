@@ -111,7 +111,7 @@ def index():
 
         enhanced_recommendations = process_books(data, category, genre, mood)
 
-        return render_template("recommendation.html", enhanced_recommendations=enhanced_recommendations, raw_response=data, trending_books=trending_books, heading=heading)
+        return render_template("recommendation.html", enhanced_recommendations=enhanced_recommendations, trending_books=trending_books, heading=heading, raw_response=data)
 
     return render_template("index.html", categories=categories, genres=genres, moods=moods, trending_books=trending_books, heading=heading)
 

@@ -1,33 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Book Recommendation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Recommendation App</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS for styling -->
+    <style>
+        /* Set a background image */
+        body {
+            background-image: url('/static/pexels-pixabay-256431.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Background color with opacity */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Book Recommendation App</h1>
-    <form method="POST">
-        <label for="category">Category:</label>
-        <select name="category" id="category" required>
-            {% for category in categories %}
-                <option value="{{ category }}">{{ category }}</option>
-            {% endfor %}
-        </select><br><br>
-        
-        <label for="genre">Genre:</label>
-        <select name="genre" id="genre" required>
-            {% for genre in genres %}
-                <option value="{{ genre }}">{{ genre }}</option>
-            {% endfor %}
-        </select><br><br>
-        
-        <label for="mood">Mood:</label>
-        <select name="mood" id="mood" required>
-            {% for mood in moods %}
-                <option value="{{ mood }}">{{ mood }}</option>
-            {% endfor %}
-        </select><br><br>
-        
-        <input type="submit" value="Get Recommendations">
-    </form>
+    <!-- Header Section -->
+    <header class="container text-center py-5">
+        <h1>Book Recommendation App</h1>
+        <p>Find the perfect book for your mood!</p>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="container text-center my-5">
+        <h2>Discover Your Next Favorite Book</h2>
+        <p>Choose your preferences to get personalized book recommendations.</p>
+    </div>
+
+    <!-- Selection Form -->
+    <div class="container" >
+        <form action="/" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category" name="category">
+                        <option value="Fiction">Fiction</option>
+                        <option value="Nonfiction">Nonfiction</option>
+                        <option value="Science Fiction">Science Fiction</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Fantasy">Fantasy</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="genre">Genre</label>
+                    <select class="form-control" id="genre" name="genre">
+                        <option value="Adventure">Adventure</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Science">Science</option>
+                        <option value="History">History</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="mood">Mood</label>
+                    <select class="form-control" id="mood" name="mood">
+                        <option value="Happy">Happy</option>
+                        <option value="Sad">Sad</option>
+                        <option value="Exciting">Exciting</option>
+                        <option value="Mysterious">Mysterious</option>
+                        <option value="Inspiring">Inspiring</option>
+                    </select>
+                </div>
+            </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Get Recommendations</button>
+          </div>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="container text-center py-3 mt-5">
+        <p>&copy; 2023 Book Recommendation App</p>
+    </footer>
+
+    <!-- Include Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

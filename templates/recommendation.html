@@ -2,51 +2,89 @@
 <html>
 <head>
     <title>Book Recommendations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .book-card {
             border: 1px solid #ccc;
             padding: 10px;
-            margin: 10px;
-            display: inline-block;
-            width: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center; /* Center the content */
+        }
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         .book-cover {
             max-width: 100%;
         }
+        .expand-button {
+            cursor: pointer;
+        }
+        .divider {
+            background-color: lightgreen;
+            height: 2px;
+            margin: 15px 0; /* Space between rows */
+        }
     </style>
 </head>
-<body>
-    <h1>Current Trending Books</h1>
-    <div>
-        {% for book in trending_books %}
-            <div class="book-card">
-                <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
-                <h3>{{ book.title }}</h3>
-                <p>Author: {{ book.authors }}</p>
-                <p>Release Date: {{ book.release_date }}</p>
-            </div>
-        {% endfor %}
+<body class="container">
+
+    <!-- Trending Books Section -->
+    <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#trending-books">Show/Hide Trending Books</button>
+    <div id="trending-books" class="collapse">
+        <h1>Current Trending Books</h1>
+        <div class="row">
+            {% for book in trending_books %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="book-card">
+                        <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
+                        <h3>{{ book.title }}</h3>
+                        <p>Author: {{ book.authors }}</p>
+                        <p>Release Date: {{ book.release_date }}</p>
+                    </div>
+                </div>
+                {% if loop.index % 4 == 0 %} <!-- Insert a divider after every 4 books -->
+                <div class="w-100 divider"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 
     <hr>
 
-    <h1>Recommended Books</h1>
-    <div>
-        {% for book in enhanced_recommendations %}
-            <div class="book-card">
-                <img src="{{ book.book_cover }}" alt "{{ book.title }} Cover" class="book-cover">
-                <h3>{{ book.title }}</h3>
-                <p>Author: {{ book.authors }}</p>
-                <p>Release Date: {{ book.release_date }}</p>
-            </div>
-        {% endfor %}
+    <!-- Recommended Books Section -->
+    <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#recommended-books">Show/Hide Recommended Books</button>
+    <div id="recommended-books" class="collapse">
+        <h1>Recommended Books</h1>
+        <div class="row">
+            {% for book in enhanced_recommendations %}
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="book-card">
+                        <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
+                        <h3>{{ book.title }}</h3>
+                        <p>Author: {{ book.authors }}</p>
+                        <p>Release Date: {{ book.release_date }}</p>
+                    </div>
+                </div>
+                {% if loop.index % 4 == 0 %} <!-- Insert a divider after every 4 books -->
+                <div class="w-100 divider"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 
-    <!-- Add a horizontal line to separate the sections -->
     <hr>
 
-    <!-- Section for displaying raw API response -->
-    <h1>Raw API Response</h1>
-    <pre>{{ raw_response | tojson(indent=2) }}</pre>
+    <!-- Raw API Response Section -->
+    <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#api-response">Show/Hide Raw API Response</button>
+    <div id="api-response" class="collapse">
+        <h1>Raw API Response</h1>
+        <pre>{{ raw_response | tojson(indent=2) }}</pre>
+    </div>
+    
+    <!-- Include Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
