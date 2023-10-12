@@ -4,12 +4,24 @@
     <title>Book Recommendations</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        body {
+            background-image: url('/static/pexels-pixabay-256431.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .section {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
         .book-card {
             border: 1px solid #ccc;
             padding: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center; /* Center the content */
+            text-align: center;
         }
         .book-card:hover {
             transform: translateY(-4px);
@@ -24,63 +36,69 @@
         .divider {
             background-color: lightgreen;
             height: 2px;
-            margin: 15px 0; /* Space between rows */
+            margin: 15px 0;
         }
     </style>
 </head>
 <body class="container">
 
     <!-- Trending Books Section -->
-    <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#trending-books">Show/Hide Trending Books</button>
-    <div id="trending-books" class="collapse">
-        <h1>Current Trending Books</h1>
-        <div class="row">
-            {% for book in trending_books %}
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="book-card">
-                        <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
-                        <h3>{{ book.title }}</h3>
-                        <p>Author: {{ book.authors }}</p>
-                        <p>Release Date: {{ book.release_date }}</p>
+    <div class="section">
+        <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#trending-books">Show/Hide Trending Books</button>
+        <div id="trending-books" class="collapse">
+            <h1>Current Trending Books</h1>
+            <div class="row">
+                {% for book in trending_books %}
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="book-card">
+                            <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
+                            <h3>{{ book.title }}</h3>
+                            <p>Author: {{ book.authors }}</p>
+                            <p>Release Date: {{ book.release_date }}</p>
+                        </div>
                     </div>
-                </div>
-                {% if loop.index % 4 == 0 %} <!-- Insert a divider after every 4 books -->
-                <div class="w-100 divider"></div>
-                {% endif %}
-            {% endfor %}
+                    {% if loop.index % 4 == 0 %}
+                    <div class="w-100 divider"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 
     <hr>
 
     <!-- Recommended Books Section -->
-    <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#recommended-books">Show/Hide Recommended Books</button>
-    <div id="recommended-books" class="collapse">
-        <h1>Recommended Books</h1>
-        <div class="row">
-            {% for book in enhanced_recommendations %}
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="book-card">
-                        <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
-                        <h3>{{ book.title }}</h3>
-                        <p>Author: {{ book.authors }}</p>
-                        <p>Release Date: {{ book.release_date }}</p>
+    <div class="section">
+        <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#recommended-books">Show/Hide Recommended Books</button>
+        <div id="recommended-books" class="collapse">
+            <h1>Recommended Books</h1>
+            <div class="row">
+                {% for book in enhanced_recommendations %}
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="book-card">
+                            <img src="{{ book.book_cover }}" alt="{{ book.title }} Cover" class="book-cover">
+                            <h3>{{ book.title }}</h3>
+                            <p>Author: {{ book.authors }}</p>
+                            <p>Release Date: {{ book.release_date }}</p>
+                        </div>
                     </div>
-                </div>
-                {% if loop.index % 4 == 0 %} <!-- Insert a divider after every 4 books -->
-                <div class="w-100 divider"></div>
-                {% endif %}
-            {% endfor %}
+                    {% if loop.index % 4 == 0 %}
+                    <div class="w-100 divider"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 
     <hr>
 
     <!-- Raw API Response Section -->
-    <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#api-response">Show/Hide Raw API Response</button>
-    <div id="api-response" class="collapse">
-        <h1>Raw API Response</h1>
-        <pre>{{ raw_response | tojson(indent=2) }}</pre>
+    <div class="section">
+        <button class="btn btn-primary mb-2 expand-button" data-toggle="collapse" data-target="#api-response">Show/Hide Raw API Response</button>
+        <div id="api-response" class="collapse">
+            <h1>Raw API Response</h1>
+            <pre>{{ raw_response | tojson(indent=2) }}</pre>
+        </div>
     </div>
     
     <!-- Include Bootstrap and jQuery JS -->
