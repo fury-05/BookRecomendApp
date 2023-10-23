@@ -117,6 +117,23 @@ Version 1.1.0
 
 ## Acknowledgments
 
+## Screen Shots
+
+### When You Run Application And Open Browser.
+![image](https://github.com/fury-05/BookRecomendApp/assets/103818328/2038164d-bdc6-48c1-a7ee-ccbfd8f4bde7)
+
+### After Selecting Your Mood Settings.
+![image](https://github.com/fury-05/BookRecomendApp/assets/103818328/f9c1e3a6-79c5-4336-be98-18714bac477b)
+
+### Expanding The Trending Books Section.
+![image](https://github.com/fury-05/BookRecomendApp/assets/103818328/379f9c59-8b5f-411c-aa7a-96793a26a3f1)
+
+### Expanding Recomendation Section Results Based on Selections and Applying Algorithm.
+![image](https://github.com/fury-05/BookRecomendApp/assets/103818328/b940f07c-a3a5-4158-84a5-1642939d9b4a)
+
+### Expanding Raw API Data View - For Developers For Trouble Shooting Or Demonstrating How We Fetch Data.
+![image](https://github.com/fury-05/BookRecomendApp/assets/103818328/03f0b7d7-4245-4a14-9ff0-7123902c7db9)
+
 We appreciate your contributions to make the Book Recommendation App even better!
 
 ---
